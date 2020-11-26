@@ -103,10 +103,39 @@ const getOne = (id) => {
   });
 };
 
+const getAllByUserId = (userId) => {
+  return new Promise((resolve, reject) => {
+    Transaction.findAll({
+      where: { userId },
+    })
+      .then((transaction) => {
+        if (!transaction) {
+          return reject({
+            error: {
+              name: "ApiFindError",
+              type: "Transaction Error",
+              errors: [
+                {
+                  message: "Transaction does not exist in the database",
+                  type: "not found",
+                  value: null,
+                },
+              ],
+            },
+          });
+        }
+
+        resolve(transaction);
+      })
+      .catch((err) => reject(err));
+  });
+};
+
 module.exports = {
   createOne,
   getAll,
   getOne,
   recharge,
-  payment
+  payment,
+  getAllByUserId
 };

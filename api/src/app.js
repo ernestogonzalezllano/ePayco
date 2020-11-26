@@ -6,7 +6,6 @@ const cors = require("cors");
 const routes = require("./routes/index.js");
 const passport = require("./passport/passport");
 
-
 require("./db.js");
 
 const app = express();
