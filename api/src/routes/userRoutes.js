@@ -10,7 +10,7 @@ const {
 
 router
   .route("/")
-  .post((req, res) => {
+  .post((req, res) => { 
     const { name, email, phone, document} = req.body;
     createOne(name, email, phone, document)
       .then((user) => res.json(user).status(201))

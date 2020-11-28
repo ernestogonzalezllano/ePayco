@@ -31,7 +31,6 @@ router
   .post((req, res) => {
     const userId = req.user ? req.user.userId : false
     const {amount} = req.body;
-    console.log(amount.phone);
     userId?
     jwt.verify(amount.token, secret, (error, data) => {
       if (error) res.sendStatus(401)
